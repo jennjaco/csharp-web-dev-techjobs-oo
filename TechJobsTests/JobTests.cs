@@ -30,10 +30,32 @@ namespace TechJobsTests
         [TestMethod]
         public void TestJobsForEquality()
         {
-            Job jobD = new Job("B", new Employer("B"), new Location("B"), new PositionType("B"), new CoreCompetency("B"));
-            Job jobE = new Job("B", new Employer("B"), new Location("B"), new PositionType("B"), new CoreCompetency("B"));
+            Job jobD = new Job("SAME", new Employer("SAME"), new Location("SAME"), new PositionType("SAME"), new CoreCompetency("SAME"));
+            Job jobE = new Job("SAME", new Employer("SAME"), new Location("SAME"), new PositionType("SAME"), new CoreCompetency("SAME"));
 
             Assert.IsFalse(jobD.Equals(jobE));
+        }
+
+        [TestMethod]
+        public void TestBlankLine()
+        {
+            Job jobF = new Job("F", new Employer("F"), new Location("F"), new PositionType("F"), new CoreCompetency("F"));
+            Assert.AreEqual(jobF.ToString(), "ID: " + jobF.Id + "\n" + "Name: " + jobF.Name + "\n" + "Employer: " + jobF.EmployerName + "\n" + "Location: " + jobF.EmployerLocation + "\n" + "Position Type: " + jobF.JobType + "\n" + "Core Competency: " + jobF.JobCoreCompetency + "\n");
+        }
+
+        [TestMethod]
+        public void TestLabel()
+        {
+            Job jobF = new Job("F", new Employer("F"), new Location("F"), new PositionType("F"), new CoreCompetency("F"));
+            Assert.AreEqual(jobF.ToString(), "ID: " + jobF.Id + "\n" + "Name: " + jobF.Name + "\n" + "Employer: " + jobF.EmployerName + "\n" + "Location: " + jobF.EmployerLocation + "\n" + "Position Type: " + jobF.JobType + "\n" + "Core Competency: " + jobF.JobCoreCompetency + "\n");
+
+        }
+
+        [TestMethod]
+        public void TestEmpty()
+        {
+            Job jobF = new Job("F", new Employer(), new Location("F"), new PositionType("F"), new CoreCompetency("F"));
+            Assert.AreEqual(jobF.ToString(), "ID: " + jobF.Id + "\n" + "Name: " + jobF.Name + "\n" + "Employer: " + "Data not available." + "\n" + "Location: " + jobF.EmployerLocation + "\n" + "Position Type: " + jobF.JobType + "\n" + "Core Competency: " + jobF.JobCoreCompetency + "\n");
         }
     }
 }

@@ -12,8 +12,6 @@ namespace TechJobsOO
         public PositionType JobType { get; set; }
         public CoreCompetency JobCoreCompetency { get; set; }
 
-        // DONE TODO: Add the two necessary constructors.
-
         public Job()
         {
             Id = nextId;
@@ -29,6 +27,8 @@ namespace TechJobsOO
             JobCoreCompetency = jobCoreCompetency;
         }
 
+        public Job(Employer employerName, Location employerLocation, PositionType jobType, CoreCompetency jobCoreCompetency) : this("No Data", employerName, employerLocation, jobType, jobCoreCompetency) { }
+
         public override bool Equals(object obj)
         {
             return obj is Job job &&
@@ -40,8 +40,30 @@ namespace TechJobsOO
             return HashCode.Combine(Id);
         }
 
-        // DONE TODO: Generate Equals() and GetHashCode() methods.
+        public override string ToString()
+        {
+            if (Name == "")
+            {
+                Name = "Data not available.";
+            }
+            else if (String.IsNullOrEmpty(EmployerName.Value))
+            {
+                EmployerName.Value = "Data not available.";
+            }
+            else if (EmployerLocation.Value == null)
+            {
+                EmployerLocation.Value = "Data not available.";
+            }
+            else if (JobType.Value == null)
+            {
+                JobType.Value = "Data not available.";
+            }
+            else if (JobCoreCompetency.Value == null)
+            {
+                JobCoreCompetency.Value = "Data not available.";
+            }
+            return "ID: " + Id + "\n" + "Name: " + Name + "\n" + "Employer: " + EmployerName + "\n" + "Location: " + EmployerLocation + "\n" + "Position Type: " + JobType + "\n" + "Core Competency: " + JobCoreCompetency + "\n";
 
-
+        }
     }
 }
